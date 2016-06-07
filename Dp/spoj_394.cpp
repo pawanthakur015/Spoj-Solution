@@ -1,0 +1,39 @@
+//********************DP----ACODE - Alphacode***********************
+
+#include<bits/stdc++.h>
+#include <cmath>
+#include <cstdio>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <map>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+  string str;
+  cin>>str;
+  while(str[0]!='0')
+  {
+     int l= str.length();
+     long long dp[l+1];
+     memset(dp,0,sizeof(dp));
+     dp[0]=1;
+     int i=1;
+     while(i<l)
+     {
+        int num = (str[i-1]-'0')*10;
+        num=num+(str[i]-'0');
+        if((str[i]-'0'))
+            dp[i]=dp[i-1];
+        if(num>9 && num<=26)
+        {
+          dp[i]+=dp[((i-2)>=0)?i-2:0];
+        }
+        i++;
+     }
+     cout<<dp[l-1]<<endl;
+     cin>>str;
+  }
+}
